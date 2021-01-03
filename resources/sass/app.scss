@@ -1,0 +1,58 @@
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button {
+  font-weight: bold !important;
+}
+
+input {
+  border-color: $primary !important;
+  color: $light !important;
+}
+
+.text-sm {
+  font-size: 12px;
+}
+.text-link {
+  color: $link;
+}
+
+.f-1 {
+  flex: 1;
+}
+
+.z-children-1 > * {
+  z-index: 1;
+}
+.z-0 {
+  z-index: 0 !important;
+}
+
+.no-pointer {
+  pointer-events: none;
+}
+
+.no-padding {
+  padding: 0
+}
+.w-40 {
+  width: 40%;
+}
+
+.base-line-height {
+  line-height: 1.6;
+}
+.min-height-content {
+  min-height: calc(100vh - 60px);
+}
