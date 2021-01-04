@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container pt-5">
+<div class="container pt-5 position-relative">
   <div class="row">
     <div class="col-5">
       <img class="responsive-img" src="{{ asset('images/sakura-keycaps.png') }}" alt="">
@@ -22,7 +22,7 @@
         @csrf
         <input type="hidden" value="{{ $product->id }}" name="product">
         <div class="form-floating mb-0">
-          <input style="width: 10ch" value="{{ $qty }}" type="number" name="qty" class="form-control bg-dark @error('qty') is-invalid @enderror">
+          <input min="0" style="width: 10ch" value="{{ $qty }}" type="number" name="qty" class="form-control bg-dark @error('qty') is-invalid @enderror">
         </div>
         <button type="submit" class="ml-3 btn btn-primary">
           {{ $qty == 0 ? 'Add to cart' : 'Update cart' }}
@@ -36,5 +36,9 @@
       @endif
     </div>
   </div>
+  
+  {{-- <div class="no-pointer translate-left position-absolute z-0 font-weight-bold" style="bottom: 0px; left: 0; transform: translate(80%, 50%); font-size: 125px; color: rgba(255, 255, 255, .02)">
+      {{ substr($product->name, 0, 10) }}
+  </div> --}}
 </div>
 @endsection

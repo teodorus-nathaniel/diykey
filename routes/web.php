@@ -14,15 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 // VIEWS
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
-
 Route::get('/products', 'ProductController@index')->name('products');
 Route::get('/products/{product}', 'ProductController@detail')->name('product');
+
+Route::get('/carts', 'CartController@view')->name('carts');
+Route::get('/favourites', 'FavouriteController@view')->name('favourites');
 
 
 // APIS
 Route::post('/carts', 'CartController@add')->name('add-cart');
+Route::post('/carts/update', 'CartController@update')->name('update-cart');
+Route::post('/favourites', 'FavouriteController@add')->name('add-favourite');

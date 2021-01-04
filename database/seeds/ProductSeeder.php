@@ -21,21 +21,21 @@ class ProductSeeder extends Seeder
         ]);
         Product::create([
             'category_id' => 3,
-            'name' => 'Sakura Keycaps Tenkeyless',
+            'name' => 'Sakura Keycaps Full asdfasdf as dfas d Tenkeyless',
             'image' => 'images/sakura-keycaps.png',
             'description' => 'Tenkeyless keycaps with sakura pattern limited edition',
             'price' => 800000
         ]);
         Product::create([
             'category_id' => 3,
-            'name' => 'Sakura Keycaps Tenkeyless',
+            'name' => 'Sakura Keycaps Tenkeyless asdf asd fasdf as ',
             'image' => 'images/sakura-keycaps.png',
             'description' => 'Tenkeyless keycaps with sakura pattern limited edition',
             'price' => 800000
         ]);
         Product::create([
             'category_id' => 3,
-            'name' => 'Sakura Keycaps Tenkeyless',
+            'name' => 'Sakura',
             'image' => 'images/sakura-keycaps.png',
             'description' => 'Tenkeyless keycaps with sakura pattern limited edition',
             'price' => 800000

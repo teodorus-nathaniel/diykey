@@ -5,7 +5,7 @@
     <div class="container d-flex justify-content-between py-3">
         <form class="d-flex">
             <input type="hidden" value="" id="category" name="category">
-            <button type="submit" onclick="document.getElementById('category').value = ''" class="py-2 px-4 {{ $selected_category == '' ? 'bg-primary' : 'bg-dark' }} border-0 text-light chip mr-3">All Products</button>
+            <button type="submit" onclick="document.getElementById('category').value = ''" class="py-1 px-4 {{ $selected_category == '' ? 'bg-primary' : 'bg-dark' }} border-0 text-light chip mr-3">All Products</button>
             @foreach($categories as $category)
             <button type="submit" onclick="document.getElementById('category').value = '{{ $category->name }}'" class="py-2 px-4 {{ $selected_category == $category->name ? 'bg-primary' : 'bg-dark' }} border-0 text-light chip mr-3">{{ $category->name }}</button>
             @endforeach
@@ -23,17 +23,22 @@
     <h1>No Products Found</h1>
     @endif
     <div class="grid-container">
+        @csrf
         @for($i = 0; $i < count($products); $i++)
-        <div class="card bg-secondary product py-5 px-4" onclick="const a = document.getElementById(`link-{{ $products[$i]->id }}`); if(a) a.click()">
+        <div class="card bg-secondary product py-4 px-4" data-product="{{ $products[$i]->id }}">
             <a href="{{ route('product', [ 'product' => $products[$i]->id ]) }}" id="link-{{ $products[$i]->id }}"></a>
             <img class="responsive-img" src="{{ asset('images/sakura-keycaps.png') }}">
             <p class="text-sm font-weight-bold text-fade mb-1">{{ $products[$i]->category->name }}</p>
             <p class="font-weight-bold mb-4 dense-line-height">{{ $products[$i]->name }}</p>
-            <p class="font-weight-bold text-link h2">{{ rupiah($products[$i]->price) }}</p>
+            <p class="font-weight-bold text-link h4">{{ rupiah($products[$i]->price) }}</p>
             @if(isset($favourited[$i]) && $favourited[$i])
-            <i class="fa fa-heart fa-2x"></i>
+            <div class="heart" data-product="{{ $products[$i]->id }}">
+                <i class="fa fa-heart fa-2x"></i>
+            </div>
             @else
-            <i class="fa fa-heart-o fa-2x"></i>
+            <div class="heart" data-product="{{ $products[$i]->id }}">
+                <i class="fa fa-heart-o fa-2x"></i>
+            </div>
             @endif
 
             @if($in_cart[$i] > 0)
@@ -43,7 +48,11 @@
         @endfor
     </div>
     <div class="no-pointer translate-left position-absolute z-0 font-weight-bold" style="top: 0px; left: 0; transform: translate(-30%, -15%); font-size: 125px; color: rgba(255, 255, 255, .05)">
-        ALL PRODUCTS
+        @if($selected_category == "")
+            ALL PRODUCTS
+        @endif
+        {{ $selected_category }}
     </div>
+    {{ $products->links() }}
 </div>
 @endsection

@@ -36,15 +36,15 @@ class ProductController extends Controller
         foreach ($items as $item) {
             $found = null;
             foreach ($carts as $cart) {
-                if($item->name == $cart->product->name) {
+                if($item->id == $cart->product_id) {
                     $found = $cart;
                 }
             }
 
             $found_fav = null;
             foreach ($favourites as $favourite) {
-                if($item->name == $favourite->product->name) {
-                    $found = $cart;
+                if($item->id == $favourite->product_id) {
+                    $found_fav = $favourite;
                 }
             }
             $in_cart[$i] = $found == null ? 0 : $found->quantity;
