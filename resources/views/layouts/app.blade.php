@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/edec9478a1.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -22,9 +23,9 @@
 <body class="bg-dark text-light">
     <div id="app">
         <nav class="navbar navbar-expand-md bg-dark shadow-sm">
-            <div class="container">
+            <div class="container py-2">
                 <a class="navbar-brand font-weight-bold text-light" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'DIYKey') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,7 +34,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-light font-weight-bold" href="{{ route('products') }}">Our Products</a>
+                        </li>
+                        @guest
+                        @else
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-light font-weight-bold position-relative" href="{{ route('products') }}">
+                                <i class="fa fa-shopping-cart fa-lg"></i>
+                            </a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -52,7 +63,7 @@
                             @endif
                         @else
                             <li class="nav-item mr-4 d-flex align-items-center">
-                                <p class="m-0">Hello, {{ Auth::user()->email }}</p>
+                                <p class="m-0 text-sm">Hello, {{ Auth::user()->email }}</p>
                             </li>
                             <li class="nav-item mr-4">
                                 <a class="nav-link text-light font-weight-bold" href="{{ route('logout') }}"
@@ -71,7 +82,7 @@
             </div>
         </nav>
 
-        <main class="container min-height-content">
+        <main class="w-100 min-height-content">
             @yield('content')
         </main>
     </div>

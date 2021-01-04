@@ -1,58 +1,125 @@
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 button {
-  font-weight: bold !important;
+    font-weight: bold !important;
+}
+p {
+    font-size: 16px;
 }
 
 input {
-  border-color: $primary !important;
-  color: $light !important;
+    border-color: $primary !important;
+    color: $light !important;
+    font-size: 14px !important;
 }
 
 .text-sm {
-  font-size: 12px;
+    font-size: 12px;
 }
 .text-link {
-  color: $link;
+    color: $link;
+}
+.text-fade {
+    color: #9e9e9e;
+}
+.text-highlight {
+    color: #99bdf2;
 }
 
 .f-1 {
-  flex: 1;
+    flex: 1;
 }
 
 .z-children-1 > * {
-  z-index: 1;
+    z-index: 1;
 }
 .z-0 {
-  z-index: 0 !important;
+    z-index: 0 !important;
 }
 
 .no-pointer {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .no-padding {
-  padding: 0
+    padding: 0;
 }
+
 .w-40 {
-  width: 40%;
+    width: 40%;
+}
+.chip {
+    border-radius: 15px;
+    font-weight: bold;
 }
 
 .base-line-height {
-  line-height: 1.6;
+    line-height: 1.6;
+}
+.dense-line-height {
+    line-height: 1.3;
 }
 .min-height-content {
-  min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px 40px;
+    position: relative;
+}
+.product {
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: filter 150ms ease-out;
+}
+.product:hover {
+    filter: brightness(1.1);
+}
+.responsive-img {
+    object-fit: contain;
+    width: 100%;
+}
+.product .fa-heart,
+.product .fa-heart-o {
+    opacity: 0;
+    position: absolute;
+    top: 15px;
+    pointer-events: none;
+    right: 20px;
+    transition: opacity 150ms ease-out;
+}
+.product:hover .fa-heart,
+.product:hover .fa-heart-o {
+    opacity: 1;
+    pointer-events: initial;
+}
+.product .chip {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+}
+
+.fa-heart-o,
+.fa-heart {
+    color: $red-icon;
+}
+
+.fa-shopping-cart {
+    color: $light;
 }
