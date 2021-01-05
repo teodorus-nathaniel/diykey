@@ -4,7 +4,7 @@
 <div class="container pt-5 position-relative">
   <div class="row">
     <div class="col-5">
-      <img class="responsive-img" src="{{ asset('images/sakura-keycaps.png') }}" alt="">
+      <img class="responsive-img" src="{{ asset($product->image) }}" alt="">
     </div>
     <div class="col-7 d-flex flex-column">
       <div class="mb-2">
@@ -28,6 +28,9 @@
           {{ $qty == 0 ? 'Add to cart' : 'Update cart' }}
         </button>
       </form>
+      <form action="{{ route('update-product-view', [ 'product' => $product->id ]) }}" class="mt-5">
+        <button class="btn btn-outline-primary">Update Product</button>
+      </form>
       @error('qty')
         <span class="invalid-feedback" style="display: block" role="alert">
           <strong>{{ $message }}</strong>
@@ -37,8 +40,8 @@
     </div>
   </div>
   
-  {{-- <div class="no-pointer translate-left position-absolute z-0 font-weight-bold" style="bottom: 0px; left: 0; transform: translate(80%, 50%); font-size: 125px; color: rgba(255, 255, 255, .02)">
+  <div class="no-pointer translate-left position-absolute z-0 font-weight-bold" style="bottom: 0px; left: 0; transform: translate(80%, 50%); font-size: 125px; color: rgba(255, 255, 255, .02)">
       {{ substr($product->name, 0, 10) }}
-  </div> --}}
+  </div>
 </div>
 @endsection

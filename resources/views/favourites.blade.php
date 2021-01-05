@@ -8,18 +8,18 @@
     <div class="grid-container">
         @csrf
         @for($i = 0; $i < count($favouriteItems); $i++)
-        <div class="card bg-secondary product py-4 px-4" data-product="{{ $favouriteItems[$i]->product->id }}">
+        <div class="card bg-secondary product" style="overflow:hidden" data-product="{{ $favouriteItems[$i]->product->id }}">
             <a href="{{ route('product', [ 'product' => $favouriteItems[$i]->product->id ]) }}" id="link-{{ $favouriteItems[$i]->product->id }}"></a>
-            <img class="responsive-img" src="{{ asset('images/sakura-keycaps.png') }}">
-            <p class="text-sm font-weight-bold text-fade mb-1">{{ $favouriteItems[$i]->product->category->name }}</p>
-            <p class="font-weight-bold mb-4 dense-line-height">{{ $favouriteItems[$i]->product->name }}</p>
-            <p class="font-weight-bold text-link h4">{{ rupiah($favouriteItems[$i]->product->price) }}</p>
+            <img class="responsive-img mb-3" src="{{ asset($favouriteItems[$i]->product->image) }}">
+            <p class="text-sm font-weight-bold text-fade mb-1 px-4">{{ $favouriteItems[$i]->product->category->name }}</p>
+            <p class="font-weight-bold mb-4 dense-line-height px-4">{{ $favouriteItems[$i]->product->name }}</p>
+            <p class="font-weight-bold text-link h4 px-4 pb-4">{{ rupiah($favouriteItems[$i]->product->price) }}</p>
             @if(isset($favourited[$i]) && $favourited[$i])
-            <div class="heart" data-product="{{ $favouriteItems[$i]->product->id }}">
+            <div class="heart pointer" data-product="{{ $favouriteItems[$i]->product->id }}">
                 <i class="fa fa-heart fa-2x"></i>
             </div>
             @else
-            <div class="heart" data-product="{{ $favouriteItems[$i]->product->id }}">
+            <div class="heart pointer" data-product="{{ $favouriteItems[$i]->product->id }}">
                 <i class="fa fa-heart-o fa-2x"></i>
             </div>
             @endif

@@ -7,6 +7,7 @@ use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -71,4 +72,86 @@ class ProductController extends Controller
             'qty' => $cart == null ? 0 : $cart->quantity
         ]);
     }
+
+    protected function validator(array $data, $required)
+    {
+        $required = $required ? 'required|' : '';
+        return Validator::make($data, [
+            'image' => $required.'image',
+            'name' => $required.'min:5|unique:products',
+            'price' => $required.'min:5000|numeric',
+            'category' => $required,
+            'description' => $required.'min:10'
+        ]);
+    }
+
+    public function viewAdd() {
+        $categories = Category::all();
+
+        return view('add-product', [
+            'categories' => $categories
+        ]);
+    }
+
+    public function add(Request $request) {
+        $this->validator($request->all(), true)->validate();
+
+        $image = $request->file('image');
+        $image_name = $request->name.'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('images'), $image_name);
+
+        $image_path = 'images/'.$image_name;
+        $product = new Product();
+        $product->image = $image_path;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->category_id = $request->category;
+        $product->description = $request->description;
+        $product->save();
+
+        return redirect()->route('products');
+    }
+
+    public function viewUpdate(Product $product) {
+        $categories = Category::all();
+
+        return view('update-product', [
+            'categories' => $categories,
+            'product' => $product
+        ]);
+    }
+
+    public function update(Request $request) {
+        $this->validator($request->all(), false)->validate();
+
+        $product = Product::find($request->id);
+        if($product == null) {
+            return redirect('home');
+        }
+
+        $image = $request->file('image');
+        if($image != null) {
+            $image_name = $request->name.'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+            $image_path = 'images/'.$image_name;
+            $product->image = $image_path;
+        }
+
+        if(isset($request->name)) {
+            $product->name = $request->name;
+        }
+        if(isset($request->price)) {
+            $product->price = $request->price;
+        }
+        if(isset($request->category)) {
+            $product->category_id = $request->category;
+        }
+        if(isset($request->category)) {
+            $product->description = $request->description;
+        }
+        $product->save();
+
+        return redirect()->route('products');
+    }
+
 }

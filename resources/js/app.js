@@ -107,5 +107,23 @@ Array.from(document.getElementsByClassName('qty')).forEach((el) => {
 })
 
 
+const inputs = document.getElementsByClassName('data-listen');
+Array.from(inputs).forEach((el) => {
+    el.addEventListener('change', function(e) {
+        const id = this.id;
+        const previewId = `preview-${id}`;
+        const dom = document.getElementById(previewId);
+        dom.textContent = this.value;
+        if(id === 'category') {
+            dom.textContent = Array.from(this.children).find((el) => el.value === this.value).textContent;
+        } else if(id === 'image') {
+            const url = URL.createObjectURL(this.files[0]);
+            dom.src = url;
+        } else if(id === 'price') {
+            dom.textContent = formatNumber(this.value)
+        }
+    });
+})
+
 
 require('./bootstrap');

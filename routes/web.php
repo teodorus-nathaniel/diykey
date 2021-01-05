@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\UserOnly;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,13 @@ Route::middleware([UserOnly::class])->group(function() {
     Route::post('/carts/update', 'CartController@update')->name('update-cart');
     Route::post('/favourites', 'FavouriteController@add')->name('add-favourite');
     Route::post('/checkout', 'TransactionController@checkout')->name('checkout');
+});
+
+Route::middleware([AdminOnly::class])->group(function() {
+    Route::get('/add-product', 'ProductController@viewAdd')->name('add-product-view');
+    Route::post('/products', 'ProductController@add')->name('add');
+
+    Route::get('/update-product/{product}', 'ProductController@viewUpdate')->name('update-product-view');
+    Route::post('/products', 'ProductController@update')->name('update-product');
 });
 

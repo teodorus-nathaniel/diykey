@@ -43,6 +43,11 @@
                             <a class="nav-link text-light font-weight-bold" href="{{ route('transactions') }}">Your Transactions</a>
                         </li>
                         @endif
+                        @if(Auth::user() != null && Auth::user()->role == 'admin')
+                        <li class="nav-item mr-2">
+                            <a class="nav-link text-light font-weight-bold" href="{{ route('add-product-view') }}">Add Product</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

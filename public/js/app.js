@@ -37398,6 +37398,28 @@ Array.from(document.getElementsByClassName('qty')).forEach(function (el) {
     updateData(this, qty, this.dataset.product);
   });
 });
+var inputs = document.getElementsByClassName('data-listen');
+Array.from(inputs).forEach(function (el) {
+  el.addEventListener('change', function (e) {
+    var _this2 = this;
+
+    var id = this.id;
+    var previewId = "preview-".concat(id);
+    var dom = document.getElementById(previewId);
+    dom.textContent = this.value;
+
+    if (id === 'category') {
+      dom.textContent = Array.from(this.children).find(function (el) {
+        return el.value === _this2.value;
+      }).textContent;
+    } else if (id === 'image') {
+      var url = URL.createObjectURL(this.files[0]);
+      dom.src = url;
+    } else if (id === 'price') {
+      dom.textContent = formatNumber(this.value);
+    }
+  });
+});
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -37466,8 +37488,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Teodorus Nathaniel\Documents\diykey\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Teodorus Nathaniel\Documents\diykey\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\USER\Desktop\tugas januari\tugas januari\webprog\diykey\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\USER\Desktop\tugas januari\tugas januari\webprog\diykey\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

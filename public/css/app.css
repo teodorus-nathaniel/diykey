@@ -10923,10 +10923,11 @@ p {
   font-size: 1rem;
 }
 
-input {
+input,
+select {
   border-color: #496fa8 !important;
   color: #dedede !important;
-  font-size: 0.85rem !important;
+  font-size: 1rem !important;
 }
 
 .text-sm {
@@ -11004,13 +11005,17 @@ input {
   transition: filter 150ms ease-out;
 }
 
+.product img {
+  height: 150px;
+}
+
 .product:hover {
   filter: brightness(1.1);
 }
 
 .responsive-img {
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 
