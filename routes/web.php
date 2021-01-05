@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\UserOnly;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,16 +23,18 @@ Route::get('/', function () {
 Route::get('/products', 'ProductController@index')->name('products');
 Route::get('/products/{product}', 'ProductController@detail')->name('product');
 
-Route::get('/carts', 'CartController@view')->name('carts');
-Route::get('/favourites', 'FavouriteController@view')->name('favourites');
-Route::get('/success', function() {
-    return view('/success');
-})->name('success');
-Route::get('/transactions', 'TransactionController@view')->name('transactions');
+Route::middleware([UserOnly::class])->group(function() {
+    Route::get('/carts', 'CartController@view')->name('carts');
+    Route::get('/favourites', 'FavouriteController@view')->name('favourites');
+    Route::get('/success', function() {
+        return view('/success');
+    })->name('success');
+    Route::get('/transactions', 'TransactionController@view')->name('transactions');
 
+    // APIS
+    Route::post('/carts', 'CartController@add')->name('add-cart');
+    Route::post('/carts/update', 'CartController@update')->name('update-cart');
+    Route::post('/favourites', 'FavouriteController@add')->name('add-favourite');
+    Route::post('/checkout', 'TransactionController@checkout')->name('checkout');
+});
 
-// APIS
-Route::post('/carts', 'CartController@add')->name('add-cart');
-Route::post('/carts/update', 'CartController@update')->name('update-cart');
-Route::post('/favourites', 'FavouriteController@add')->name('add-favourite');
-Route::post('/checkout', 'TransactionController@checkout')->name('checkout');
