@@ -26,7 +26,7 @@
           <input min="0" class="form-control bg-dark qty" type="number" name="qty" id="qty-{{ $carts[$i]->product->id }}" value="{{ $carts[$i]->quantity }}" style="width: 8ch" data-qty="{{ $carts[$i]->quantity }}" data-product="{{ $carts[$i]->product->id }}" data-price="{{ $carts[$i]->product->price }}">
           <i class="fa fa-angle-up fa-2x ml-3 arrow-qty pointer" data-product="{{ $carts[$i]->product->id }}"></i>
           <div class="d-flex align-items-center justify-content-center position-absolute hide" style="bottom: -20px; transform: translateY(100%)" id="buttons-{{ $carts[$i]->product->id }}">
-            <button class="btn mr-2 text-light btn-outline-primary" type="reset" onclick="document.getElementById('buttons-{{ $carts[$i]->product->id }}').classList.add('hide'); const a = document.getElementById('subtotal-{{ $carts[$i]->product->id }}'); a.textContent = a.dataset.subtotal">Cancel</button>
+            <button class="btn mr-2 text-light btn-outline-primary btn-" type="reset" onclick="document.getElementById('buttons-{{ $carts[$i]->product->id }}').classList.add('hide'); const a = document.getElementById('subtotal-{{ $carts[$i]->product->id }}'); a.textContent = a.dataset.subtotal">Cancel</button>
             <button class="btn btn-primary" type="submit" id="update-{{ $carts[$i]->product->id }}">Update</button>
             <button class="btn btn-danger hide" type="submit" id="remove-{{ $carts[$i]->product->id }}">Remove</button>
           </div>
@@ -43,7 +43,10 @@
     <span class="font-weight-bold h4" id="grand-total">Rp.</span>
     
     @if(count($carts) > 0)
-    <button class="btn btn-primary mt-3">Checkout</button>
+    <form method="POST" action="{{ route('checkout') }}">
+      @csrf
+      <button class="btn btn-primary mt-3">Checkout</button>
+    </form>
     @endif
   </div>
 </div>

@@ -5,7 +5,7 @@
     <div class="w-100 d-flex position-relative pb-5 align-items-center justify-content-between min-height-content z-children-1">
         <div class="w-40">
             <h1 class="font-weight-bold text-light mb-3">DIYKey</h1>
-            <p class="text-light mb-5 h5 base-line-height">One stop marketplace for all your keyboard needs</p>
+            <p class="text-light mb-5 base-line-height">One stop marketplace for all your keyboard needs</p>
             <a href="{{ route('products') }}"><button class="btn btn-primary btn-lg">Shop Now!</button></a>
         </div>
         <div class="f-1">

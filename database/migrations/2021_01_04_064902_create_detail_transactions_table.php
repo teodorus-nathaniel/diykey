@@ -17,9 +17,9 @@ class CreateDetailTransactionsTable extends Migration
             $table->id();
             $table->integer('quantity');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('header_transaction_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('transaction_id')->references('id')->on('header_transactions');
+            $table->foreign('header_transaction_id')->references('id')->on('header_transactions');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md bg-dark shadow-sm">
             <div class="container py-2">
-                <a class="navbar-brand font-weight-bold position-relative text-highlight" href="{{ url('/') }}" style="top: -2px">
+                <a class="navbar-brand font-weight-bold position-relative text-highlight" href="{{ url('/') }}">
                     {{ config('app.name', 'DIYKey') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -34,20 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item mr-4">
+                        <li class="nav-item mr-2">
                             <a class="nav-link text-light font-weight-bold" href="{{ route('products') }}">Our Products</a>
                         </li>
                         @guest
                         @else
                         <li class="nav-item mr-2">
-                            <a class="nav-link text-light font-weight-bold position-relative" href="{{ route('carts') }}">
-                                <i class="fa fa-shopping-cart fa-lg"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item mr-2">
-                            <a class="nav-link text-light font-weight-bold position-relative" href="{{ route('favourites') }}">
-                                <i class="fa fa-heart fa-lg"></i>
-                            </a>
+                            <a class="nav-link text-light font-weight-bold" href="{{ route('transactions') }}">Your Transactions</a>
                         </li>
                         @endif
                     </ul>
@@ -67,6 +60,16 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item mr-2">
+                                <a class="nav-link text-light font-weight-bold position-relative" href="{{ route('favourites') }}">
+                                    <i class="fa fa-heart fa-lg"></i>
+                                </a>
+                            </li>   
+                            <li class="nav-item mr-4">
+                                <a class="nav-link text-light font-weight-bold position-relative" href="{{ route('carts') }}">
+                                    <i class="fa fa-shopping-cart fa-lg"></i>
+                                </a>
+                            </li>
                             <li class="nav-item mr-4 d-flex align-items-center">
                                 <p class="m-0 text-sm">Hello, {{ Auth::user()->email }}</p>
                             </li>
