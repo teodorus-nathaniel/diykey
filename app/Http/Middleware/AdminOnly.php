@@ -18,7 +18,7 @@ class AdminOnly
     {
         if(Auth::guest()) {
             return redirect()->route('login');
-        } else if(Auth::user()->role == 'member') {
+        } else if(Auth::user()->role == 'user') {
             return redirect()->route('home');
         }
 
