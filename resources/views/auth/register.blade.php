@@ -38,7 +38,7 @@
                     @enderror
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-primary" type="submit">Register</button>
             <p class="text-center mt-3">Already have an account? <a class="font-weight-bold text-link" href="{{ route('login') }}">Login</a> here!</p>
         </form>
     </div>

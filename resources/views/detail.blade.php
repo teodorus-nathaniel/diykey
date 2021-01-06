@@ -28,9 +28,12 @@
           {{ $qty == 0 ? 'Add to cart' : 'Update cart' }}
         </button>
       </form>
+      @guest
+      @elseif(Auth::user()->role == 'admin')
       <form action="{{ route('update-product-view', [ 'product' => $product->id ]) }}" class="mt-5">
         <button class="btn btn-outline-primary">Update Product</button>
       </form>
+      @endif
       @error('qty')
         <span class="invalid-feedback" style="display: block" role="alert">
           <strong>{{ $message }}</strong>
