@@ -78,7 +78,7 @@ class ProductController extends Controller
         $required = $required ? 'required|' : '';
         return Validator::make($data, [
             'image' => $required.'image',
-            'name' => $required.'min:5|unique:products',
+            'name' => $required.'min:5'.$required ? '|unique:products' : '',
             'price' => $required.'min:5000|numeric',
             'category' => $required,
             'description' => $required.'min:10'
