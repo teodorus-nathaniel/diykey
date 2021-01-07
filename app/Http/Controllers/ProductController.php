@@ -121,10 +121,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request, Product $product) {
         $this->validator($request->all(), false)->validate();
 
-        $product = Product::find($request->id);
         if($product == null) {
             return redirect('home');
         }

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4 z-children-1 position-relative">
   <div class="d-flex align-items-start position-relative">
-    <form method="POST" action="/products" style="flex: 1" class="bg-secondary card px-5 py-4" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('add') }}" style="flex: 1" class="bg-secondary card px-5 py-4" enctype="multipart/form-data">
       @csrf
       <h1 class="mb-4 mt-2 h3 font-weight-bold">New Product Informations</h1>
       <div class="mt-1">

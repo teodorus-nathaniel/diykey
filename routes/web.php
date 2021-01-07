@@ -44,6 +44,6 @@ Route::middleware([AdminOnly::class])->group(function() {
     Route::post('/products', 'ProductController@add')->name('add');
 
     Route::get('/update-product/{product}', 'ProductController@viewUpdate')->name('update-product-view');
-    Route::post('/products', 'ProductController@update')->name('update-product');
+    Route::post('/products/{product}', 'ProductController@update')->name('update-product');
 });
 

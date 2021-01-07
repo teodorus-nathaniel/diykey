@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4 z-children-1 position-relative">
   <div class="d-flex align-items-start position-relative">
-    <form method="POST" action="{{ route('update-product') }}" style="flex: 1" class="bg-secondary card px-5 py-4" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('update-product', [ 'product' => $product->id ]) }}" style="flex: 1" class="bg-secondary card px-5 py-4" enctype="multipart/form-data">
       @csrf
       <input type="hidden" name="id" value="{{ $product->id }}">
       <h1 class="mb-4 mt-2 h3 font-weight-bold">Current Product Informations</h1>
